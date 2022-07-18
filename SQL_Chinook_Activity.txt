@@ -1,0 +1,50 @@
+Stephanie Bowser
+Tabitha Townes
+Daniel Ray
+Roger Solorzano
+
+1) Provide a query showing Customers (just their full names, customer ID and country) who are not in the US.
+SELECT "FirstName", "LastName", "CustomerId", "Country" FROM "Customer" WHERE "Country" != 'USA';
+
+2) Provide a query only showing the Customers from Brazil.
+SELECT "FirstName", "LastName", "Country" FROM "Customer" WHERE "Country" = 'Brazil';
+
+3) Provide a query showing the Invoices of customers who are from Brazil. The resultant table should show the customer's full name, Invoice ID, Date of the invoice and billing country.
+SELECT "FirstName", "LastName", "InvoiceId", "InvoiceDate", "BillingCountry" FROM "Invoice"
+FULL JOIN "Customer" ON
+"Invoice"."CustomerId" = "Customer"."CustomerId"  WHERE "Country" = 'Brazil';
+
+4) Provide a query showing only the Employees who are Sales Agents.
+SELECT * FROM "Employee" WHERE "Title" = 'Sales Support Agent';
+
+5) Provide a query showing a unique list of billing countries from the Invoice table.
+SELECT "BillingCountry" FROM "Invoice" GROUP BY "BillingCountry";
+
+6) Provide a query that shows the invoices associated with each sales agent. The resultant table should include the Sales Agent's full name.
+SELECT "Employee"."LastName", "Employee"."FirstName",
+"Invoice"."InvoiceId", "Customer"."SupportRepId" FROM "Employee", "Invoice", "Customer"
+WHERE "Employee"."EmployeeId" = "SupportRepId";
+
+7) Provide a query that shows the Invoice Total, Customer name, Country and Sale Agent name for all invoices and customers.
+SELECT "Invoice"."Total", "Customer"."FirstName", "Customer"."LastName", "Invoice"."BillingCountry", "Customer"."SupportRepId", 
+"Employee"."LastName", "Employee"."FirstName" FROM "Invoice", "Customer", "Employee"
+WHERE "Employee"."EmployeeId" = "SupportRepId";
+
+8) How many Invoices were there in 2009 and 2011? What are the respective total sales for each of those years?
+SELECT date_part('year',"InvoiceDate") = '2009' FROM "Invoice"; 83
+SELECT date_part('year',"InvoiceDate") = '2011' FROM "Invoice"; 63
+SELECT count(*) FROM "Invoice" WHERE date_part('year',"InvoiceDate") = '2009' OR date_part('year',"InvoiceDate") = '2011';
+
+SELECT SUM("Total") FROM "Invoice" WHERE date_part('year',"InvoiceDate") = '2009'; 449.46
+SELECT SUM("Total") FROM "Invoice" WHERE date_part('year',"InvoiceDate") = '2011'; 469.58
+SELECT SUM("Invoice"."Total") FROM "Invoice" WHERE
+date_part('year', "InvoiceDate") = '2009' OR date_part('year', "InvoiceDate") = '2011'
+GROUP BY date_part('year', "InvoiceDate");
+
+9) Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for Invoice ID 37.
+SELECT "InvoiceId", COUNT(*) FROM "Invoice" WHERE "InvoiceId" = 37 GROUP BY "InvoiceId";
+
+10) Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for each Invoice. HINT: GROUP BY
+SELECT "InvoiceId", COUNT(*) FROM "Invoice" GROUP BY "InvoiceId";
+
+
