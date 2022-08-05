@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import com.revature1.model.Reimburse;
 import com.revature1.util.ConnectionUtil;
@@ -39,9 +40,12 @@ public class ReimburseRepositoryImpl implements ReimburseRepository{
 			while(set.next()) {
 
 				Reimburse reimburse = new Reimburse(
-						set.getString(1),
+						set.getInt(1),
 						set.getString(2),
-						set.getString(3));
+						set.getString(3),
+						set.getString(4),
+						set.getString(5)
+						);
 
 				reimburses.add(reimburse);
 				 
@@ -65,23 +69,28 @@ public class ReimburseRepositoryImpl implements ReimburseRepository{
 
 
 
-	@Override
+//	@Override
 	public void save(Reimburse reimburse) {
 
 		Connection conn = null;
 
 		PreparedStatement stmt = null;
 
-		final String SQL = "insert into reimburses values(?, ?, ?)";
+		final String SQL = "insert into reimburses values(default, ?, ?, ?, ?)";
+		//final String SQL = "update reimburses set userName=?,amount=?,description=?, approval= ?";
 		
 		try {
 			conn = ConnectionUtil.getNewConnection();
 			stmt = conn.prepareStatement(SQL);
 
+
 			stmt.setString(1, reimburse.getUserName());
 			stmt.setString(2, reimburse.getAmount());
 			stmt.setString(3, reimburse.getDescription());
+			stmt.setString(4, reimburse.getApproval());
 			stmt.execute();
+			
+			
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -103,7 +112,7 @@ public class ReimburseRepositoryImpl implements ReimburseRepository{
 		Connection conn = null;
 		
 		PreparedStatement stmt = null;
-		final String SQL = "update reimburses set username= smbowser amount= amount and description= description";
+		final String SQL = "update reimburses set userName=?,amount=?,description=?,approval=? where approval='pending'";
 		
 		try {
 
@@ -111,9 +120,11 @@ public class ReimburseRepositoryImpl implements ReimburseRepository{
 
 			stmt = ((Connection) conn).prepareStatement(SQL);
 
+			
 			stmt.setString(1, reimburse.getUserName());
 			stmt.setString(2, reimburse.getAmount());
 			stmt.setString(3, reimburse.getDescription());
+			stmt.setString(4, reimburse.getApproval());
 			//Executing the query
 			stmt.execute();
 			
@@ -132,28 +143,30 @@ public class ReimburseRepositoryImpl implements ReimburseRepository{
 		
 	}
 
-	public Reimburse findByuserName(String userName) {
+	public Reimburse findById(int id) {
 		
 		Reimburse reimburse = null;
 		
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet set = null;
-		final String SQL = "select * from reimburses where username = ?";
+		final String SQL = "select * from reimburses where id = ?";
 		
 		try {
 			conn = ConnectionUtil.getNewConnection();
 			stmt = conn.prepareStatement(SQL);
 
-			stmt.setString(1, userName);
+			stmt.setInt(1, id);
 			set = stmt.executeQuery();
 			
 
 			if(set.next()) {
 				reimburse = new Reimburse(
-						set.getString(1),
+						set.getInt(1),
 						set.getString(2),
-						set.getString(3)
+						set.getString(3),
+						set.getString(4),
+						set.getString(5)
 						);
 				
 			}
@@ -173,22 +186,5 @@ public class ReimburseRepositoryImpl implements ReimburseRepository{
 		
 		return reimburse;
 	}
-
-
-
-	@Override
-	public Reimburse findByUserName(String username) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	public Reimburse findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
 }

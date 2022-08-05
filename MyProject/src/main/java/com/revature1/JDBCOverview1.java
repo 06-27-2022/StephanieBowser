@@ -51,15 +51,17 @@ public class JDBCOverview1 {
 		System.out.println(users);
 		
 		ReimburseRepository reimburseRepository = new ReimburseRepositoryImpl();
+
 		
+		//Reimburse newReimburse = new Reimburse(0, "?", "?", 
+		//		"?", false);
+		//reimburseRepository.save(newReimburse);
 		
-		Reimburse newReimburse = new Reimburse("manager", "100", 
-				"I need a reimbursement");
-		reimburseRepository.save(newReimburse);
+
+			
 		List<Reimburse> reimburses = reimburseRepository.findAllReimburse();
-		System.out.println(reimburses);
+		System.out.println(reimburses);}
 	}
 	
 	
 	
-}

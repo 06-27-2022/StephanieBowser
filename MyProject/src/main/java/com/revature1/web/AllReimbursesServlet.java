@@ -27,9 +27,10 @@ public class AllReimbursesServlet extends HttpServlet{
 		ObjectMapper imTheMap = new ObjectMapper();
 		String json = imTheMap.writeValueAsString(reimburses);
 
-		response.setContentType("application/json"); //you should be setting the content type
+		response.setContentType("application/json"); //setting the content type application/json
 		PrintWriter writer = response.getWriter();
 		writer.write(json);
 	}
+	
 
 }

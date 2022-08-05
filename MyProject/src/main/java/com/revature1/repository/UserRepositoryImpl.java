@@ -172,7 +172,7 @@ public class UserRepositoryImpl implements UserRepository{
 		Connection conn = null;
 		//I also know that I need a Statement object if I want to run queries against the DB.
 		PreparedStatement stmt = null;
-		final String SQL = "update users set lastname = ? where id = ?";
+		final String SQL = "update users set id = ? where id = ?";
 		
 		try {
 			//Using our utility class and method to grab a new connection to the DB
@@ -255,24 +255,5 @@ public class UserRepositoryImpl implements UserRepository{
 		return user;
 	}
 
-
-	@Override
-	public List<Reimburse> findAllReimburse() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public void save(Reimburse reimburse) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void update(Reimburse reimburse) {
-		// TODO Auto-generated method stub
-		
-	}	
+	
 }

@@ -15,8 +15,6 @@ public interface UserRepository {
 	void update(User user);
 
 	User findById(int id);
-	List<Reimburse> findAllReimburse();
-	void save(Reimburse reimburse);
-	void update(Reimburse reimburse);
+
 	
 }

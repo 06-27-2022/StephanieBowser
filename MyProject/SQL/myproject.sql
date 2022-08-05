@@ -9,10 +9,12 @@ CREATE TABLE public.users (
 
 ALTER TABLE public.reimburse ADD CONSTRAINT reimburse_pk PRIMARY KEY (username);
 
-CREATE TABLE public.reimburse (
+CREATE TABLE public.reimburses (
+	id serial4 NOT NULL,
 	username varchar NULL,
 	amount varchar NULL,
-	description varchar NULL
+	description varchar NULL,
+	approval bool NULL
 );
 
 ALTER TABLE public.users ADD manager bit NULL;

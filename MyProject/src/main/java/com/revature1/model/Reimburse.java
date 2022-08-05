@@ -3,9 +3,11 @@ package com.revature1.model;
 import java.util.Objects;
 
 public class Reimburse {
+	private Integer id;
 	private String userName;
 	private String amount;
 	private String description;
+	private String approval;
 	
 	public Reimburse() {
 		super();
@@ -13,13 +15,19 @@ public class Reimburse {
 	}
 
 
-	
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 
 	public String getUserName() {
 		return userName;
 	}
-
-
 
 
 	public void setUserName(String userName) {
@@ -27,13 +35,9 @@ public class Reimburse {
 	}
 
 
-
-
 	public String getAmount() {
 		return amount;
 	}
-
-
 
 
 	public void setAmount(String amount) {
@@ -41,13 +45,9 @@ public class Reimburse {
 	}
 
 
-
-
 	public String getDescription() {
 		return description;
 	}
-
-
 
 
 	public void setDescription(String description) {
@@ -55,20 +55,26 @@ public class Reimburse {
 	}
 
 
-	
+	public String getApproval() {
+		return approval;
+	}
 
-	public Reimburse(String string) {
-		// TODO Auto-generated constructor stub
+
+	public void setApproval(String approval) {
+		this.approval = approval;
 	}
 
 
 
 
-	public Reimburse(String userName, String amount, String description) {
+
+	public Reimburse(Integer id, String userName, String amount, String description, String approval) {
 		super();
+		this.id = id;
 		this.userName = userName;
 		this.amount = amount;
 		this.description = description;
+		this.approval = approval;
 	}
 
 
@@ -76,10 +82,8 @@ public class Reimburse {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(amount, description, userName);
+		return Objects.hash(amount, approval, description, id, userName);
 	}
-
-
 
 
 	@Override
@@ -91,11 +95,17 @@ public class Reimburse {
 		if (getClass() != obj.getClass())
 			return false;
 		Reimburse other = (Reimburse) obj;
-		return Objects.equals(amount, other.amount) && Objects.equals(description, other.description)
+		return Objects.equals(amount, other.amount) && Objects.equals(approval, other.approval)
+				&& Objects.equals(description, other.description) && Objects.equals(id, other.id)
 				&& Objects.equals(userName, other.userName);
 	}
 
 
+	@Override
+	public String toString() {
+		return "Reimburse [id=" + id + ", userName=" + userName + ", amount=" + amount + ", description=" + description
+				+ ", approval=" + approval + "]";
+	}
 
 
 	public void add(Reimburse reimburse) {

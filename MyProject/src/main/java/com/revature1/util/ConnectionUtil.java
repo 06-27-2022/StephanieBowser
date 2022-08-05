@@ -1,10 +1,17 @@
 package com.revature1.util;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.revature1.model.Reimburse;
 import com.revature1.model.User;
@@ -12,6 +19,7 @@ import com.revature1.model.User;
 
 public class ConnectionUtil {
 
+	
 
 	public static Connection getNewConnection() throws SQLException {
 		
@@ -36,6 +44,7 @@ public class ConnectionUtil {
 		boolean status=false;
 		try{		
 			User user = null;
+	
 		
 		Connection conn = null;
 
@@ -74,4 +83,7 @@ public class ConnectionUtil {
 		}catch(Exception e){System.out.println(e);}
 		return status;
 		}
-}
+
+
+		
+	}

@@ -3,7 +3,7 @@
 how your web-aware application should be deployed to a server. It details the specific
 endpoints (URLs) the client can use to access specific resources. -->
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://Java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-  <display-name>ServletDemo</display-name>
+  <display-name>MyProject</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -19,6 +19,14 @@ endpoints (URLs) the client can use to access specific resources. -->
   <servlet-mapping>
     <servlet-name>FirstServlet</servlet-name>
     <url-pattern>/firstservlet</url-pattern>
+  </servlet-mapping>
+      <servlet>
+    <servlet-name>Cookies</servlet-name>
+    <servlet-class>com.revature1.web.Cookies</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Cookies</servlet-name>
+    <url-pattern>/login</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>HelloWorldServlet</servlet-name>
@@ -51,6 +59,14 @@ endpoints (URLs) the client can use to access specific resources. -->
   <servlet-mapping>
     <servlet-name>ReimbursePost</servlet-name>
     <url-pattern>/reimburse</url-pattern>
+  </servlet-mapping>
+      <servlet>
+    <servlet-name>ReimburseUpdateServlet</servlet-name>
+    <servlet-class>com.revature1.web.ReimburseUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReimburseUpdateServlet</servlet-name>
+    <url-pattern>/reimburseupdate</url-pattern>
   </servlet-mapping>
   <servlet>
   	<servlet-name>RequestParametersServlet</servlet-name>

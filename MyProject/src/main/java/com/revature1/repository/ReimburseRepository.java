@@ -16,6 +16,6 @@ public interface ReimburseRepository {
 	void update(Reimburse reimburse);
 
 	Reimburse findById(int id);
-	Reimburse findByUserName(String username);
+//	Reimburse findByUserName(String userName);
 	
 }
